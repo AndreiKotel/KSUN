@@ -1,0 +1,263 @@
+program KSUN;
+
+uses
+  Forms,
+  Sysutils,
+  dialogs,
+  UnitMain in 'UnitMain.pas' {FormMain},
+  UnitDataSpr in '..\DelphiABA\UnitDataSpr.pas' {DataSpr: TDataModule},
+  UnitSBS in '..\DelphiABA\UnitSBS.pas' {FormSBS},
+  UnitSMOL in '..\DelphiABA\UnitSMOL.pas' {FormSMOL},
+  UnitSWTP in '..\DelphiABA\UnitSWTP.pas' {FormSWTP},
+  UnitSTMC in '..\DelphiABA\UnitSTMC.pas' {FormSTMC},
+  UnitFONOST in 'UnitFONOST.pas' {FormFONOST},
+  UnitSO in '..\DelphiABA\UnitSO.pas' {FormSO},
+  UnitFTXPRN in '..\DelphiABA\UnitFTXPRN.pas' {FormFTXPRN},
+  UnitFTXTMO in '..\DelphiABA\UnitFTXTMO.pas' {FormFTXTMO},
+  UnitSEDI in '..\DelphiABA\UnitSEDI.pas' {FormSEDI},
+  UnitData in '..\DelphiABA\UnitData.pas' {Data: TDataModule},
+  UnitSearchSBS in '..\DelphiABA\UnitSearchSBS.pas' {FormSearchSBS},
+  UnitSearchOP in '..\DelphiABA\UnitSearchOP.pas' {FormSearchOP},
+  UnitSearchSB in '..\DelphiABA\UnitSearchSB.pas' {FormSearchSB},
+  UnitSearchSWTP in '..\DelphiABA\UnitSearchSWTP.pas' {FormSearchSWTP},
+  UnitSearchSAS in '..\DelphiABA\UnitSearchSAS.pas' {FormSearchSAS},
+  UnitSearchSEDI in '..\DelphiABA\UnitSearchSEDI.pas' {FormSearchSEDI},
+  UnitNastroi in '..\DelphiABA\UnitNastroi.pas' {FormNastroi},
+  UnitSearchO in '..\DelphiABA\UnitSearchO.pas' {FormSearchO},
+  UnitSearchSTMC in '..\DelphiABA\UnitSearchSTMC.pas' {FormSearchSTMC},
+  UnitSearchFTXPRN in '..\DelphiABA\UnitSearchFTXPRN.pas' {FormSearchFTXPRN},
+  UnitSprGrup in '..\DelphiABA\UnitSprGrup.pas' {FormSprGrup},
+  UnitSTMCAdd in '..\DelphiABA\UnitSTMCAdd.pas' {FormSTMCAdd},
+  UnitSearchSprGrup in '..\DelphiABA\UnitSearchSprGrup.pas' {FormSearchSprGrup},
+  UnitSearchSprPGrup in '..\DelphiABA\UnitSearchSprPGrup.pas' {FormSearchSprPGrup},
+  UnitSearchSprVid in '..\DelphiABA\UnitSearchSprVid.pas' {FormSearchSprVid},
+  UnitSearchSprRaz1 in '..\DelphiABA\UnitSearchSprRaz1.pas' {FormSearchSprRaz1},
+  UnitSearchSprRaz2 in '..\DelphiABA\UnitSearchSprRaz2.pas' {FormSearchSprRaz2},
+  UnitDataSQL in '..\DelphiABA\UnitDataSQL.pas' {DataSQL: TDataModule},
+  UnitSSK in '..\DelphiABA\UnitSSK.pas' {FormSSK},
+  UnitOtDvGr in '..\DelphiABA\UnitOtDvGr.pas' {FormOtDvGr},
+  UnitOtDvPGr in '..\DelphiABA\UnitOtDvPGr.pas' {FormOtDvPGr},
+  UnitOtDvVid in '..\DelphiABA\UnitOtDvVid.pas' {FormOtDvVid},
+  UnitOtDvEI in '..\DelphiABA\UnitOtDvEI.pas' {FormOtDvEI},
+  UnitOtDvRaz1 in '..\DelphiABA\UnitOtDvRaz1.pas' {FormOtDvRaz1},
+  UnitOtDvRaz2 in '..\DelphiABA\UnitOtDvRaz2.pas' {FormOtDvRaz2},
+  UnitOtTpGr in '..\DelphiABA\UnitOtTpGr.pas' {FormOtTpGr},
+  UnitOtTp in '..\DelphiABA\UnitOtTp.pas' {FormOtTp},
+  UnitOtTpPGr in '..\DelphiABA\UnitOtTpPGr.pas' {FormOtTpPGr},
+  UnitFTXPRC in '..\DelphiABA\UnitFTXPRC.pas' {FormFTXPRC},
+  UnitTMCPrice in '..\DelphiABA\UnitTMCPrice.pas' {FormTMCPrice},
+  FindCompare in '..\Programming\CompDelphi\FindCompare.pas',
+  UnitThread in '..\DelphiABA\UnitThread.pas',
+  UnitFormProgress in '..\DelphiABA\UnitFormProgress.pas' {FormProgress},
+  UnitFTXPRNAll in '..\DelphiABA\UnitFTXPRNAll.pas' {FormFTXPRNAll},
+  UnitSearchSTPMag in '..\DelphiABA\UnitSearchSTPMag.pas' {FormSearchSTPMag},
+  FormU in '..\DelphiABA\FORMU.PAS' {FormUser},
+  Util in '..\DelphiABA\Util.pas' {UtilForm},
+  DT in '..\DelphiABA\DT.PAS' {DTForm},
+  UnitSTMCEdit in '..\DelphiABA\UnitSTMCEdit.pas' {FormSTMCEdit},
+  UnitAxc in '..\DelphiABA\UnitAxc.pas' {FormAxc},
+  UnitDat in '..\DelphiABA\UnitDat.pas' {FormDat},
+  Zas in '..\DelphiABA\ZAS.PAS' {zasForm},
+  UnitNP in '..\DelphiABA\UnitNP.pas' {NewPrice},
+  UnitSTMCKor in '..\DelphiABA\UnitSTMCKor.pas' {FormSTMCKor},
+  UnitPrint in 'UnitPrint.pas' {FormPrint},
+  UnitInvent in '..\DelphiABA\UnitInvent.pas' {FormInvent},
+  UnitOutNNT in '..\DelphiABA\UnitOutNNT.pas' {OutNNT},
+  UnitVoditel in '..\DelphiABA\UnitVoditel.pas' {FormVoditel},
+  Bank in '..\DelphiABA\Bank.pas' {BankForm},
+  SWTP in '..\DelphiABA\SWTP.pas' {SWTPForm},
+  UnitSearchByt in '..\DelphiABA\UnitSearchByt.pas' {FormSearchByt},
+  UnitVolute in '..\DelphiABA\UnitVolute.pas' {OutVolute},
+  UnitRemainsForming in '..\DelphiABA\UnitRemainsForming.pas' {FormRemainsForming},
+  Unitpr in '..\DelphiABA\Unitpr.pas' {pr},
+  UnitSearchMOL in '..\DelphiABA\UnitSearchMOL.pas' {FormSearchMOL},
+  UnitGroupIncome in '..\DelphiABA\UnitGroupIncome.pas' {GroupIncome},
+  PriceRegistry in '..\DelphiABA\PriceRegistry.pas' {FormPriceRegistry},
+  TEhistory in '..\DelphiABA\TEhistory.pas' {FormTEhistory},
+  Alex in '..\DelphiABA\Alex.pas',
+  NDS in '..\DelphiABA\NDS.pas' {FormNDS},
+  UnitSBC in '..\DelphiABA\UnitSBC.pas' {FormSBC},
+  UnitSTP in '..\DelphiABA\UnitSTP.pas' {FormSTP},
+  UnitSearchSTP in '..\DelphiABA\UnitSearchSTP.pas' {FormSearchSTP},
+  UnitSPD in '..\DelphiABA\UnitSPD.pas' {FormSPD},
+  UnitSearchFTXAP in '..\DelphiABA\UnitSearchFTXAP.pas' {FormSearchFTXAP},
+  UnitSVT in '..\DelphiABA\UnitSVT.pas' {FormSVT},
+  UnitSNK in '..\DelphiABA\UnitSNK.pas' {FormSNK},
+  UnitSearchSVT in '..\DelphiABA\UnitSearchSVT.pas' {FormSearchSVT},
+  AnalPotP in '..\DelphiABA\AnalPotP.pas' {AnalPotPForm},
+  UnitSearchSNKat in '..\DelphiABA\UnitSearchSNKat.pas' {FormSearchSNKat},
+  UnitPerSm in '..\DelphiABA\UnitPerSm.pas' {FormPerSm},
+  UnitFTXAB in '..\DelphiABA\UnitFTXAB.pas' {FormFTXAB},
+  UnitSearchFTXAB in '..\DelphiABA\UnitSearchFTXAB.pas' {FormSearchFTXAB},
+  UnitSpCennik in '..\DelphiABA\UnitSpCennik.pas' {FormSpCennik},
+  UnitCennik in '..\DelphiABA\UnitCennik.pas' {FormCennik},
+  UnitSpNakl in '..\DelphiABA\UnitSpNakl.pas' {FormSpNakl},
+  NewUser in '..\DelphiABA\NewUser.pas' {NewUserForm},
+  UnitFonostDays in '..\DelphiABA\UnitFonostDays.pas' {FonostDays},
+  UnitOpSvTov in '..\DelphiABA\UnitOpSvTov.pas' {FormOpSvTov},
+  UnitKnProdaj in '..\DelphiABA\UnitKnProdaj.pas' {FormKnProdaj},
+  UnitSprBonus in '..\DelphiABA\UnitSprBonus.pas' {FormSprBonus},
+  UnitTPGr in '..\DelphiABA\UnitTPGr.pas' {FormTPGr},
+  UnitKachYdo in '..\DelphiABA\UnitKachYdo.pas' {FormKachYdo},
+  UnitViborKachYdo in '..\DelphiABA\UnitViborKachYdo.pas' {FormViborKachYdo},
+  UnitSearchSTMC1 in '..\DelphiABA\UnitSearchSTMC1.pas' {FormSearchSTMC1},
+  UnitPerenosNakl in '..\DelphiABA\UnitPerenosNakl.pas' {FormPerenosNakl},
+  UnitSymNakl in '..\DelphiABA\UnitSymNakl.pas' {FormSymNakl},
+  UnitReestrNakl in '..\DelphiABA\UnitReestrNakl.pas' {FormPerenosNakl},
+  ky in '..\DelphiABA\ky.pas' {tky},
+  UnitViborNakl in '..\DelphiABA\UnitViborNakl.pas' {FormViborNakl},
+  UnitCopyNO in '..\DelphiABA\UnitCopyNO.pas' {FormCopyNO},
+  UnitRazSK in '..\DelphiABA\UnitRazSK.pas' {FormRazSK},
+  UnitTonnaz in '..\DelphiABA\UnitTonnaz.pas' {FormTonnaz},
+  PriceRegistryNom in '..\DelphiABA\PriceRegistryNom.pas' {FormPriceRegistryNom},
+  UnitYbil in '..\DelphiABA\UnitYbil.pas' {FormYbil},
+  UnitFTXPRNAllDop in '..\DelphiABA\UnitFTXPRNAllDop.pas' {FormFTXPRNAllDop},
+  UnitOtherDocuments in '..\DelphiABA\UnitOtherDocuments.pas' {FormOtherDocuments},
+  UnitFTXPRNTransp in '..\DelphiABA\UnitFTXPRNTransp.pas' {FormFTXPRNTransp},
+  UnitSprSootv in '..\DelphiABA\UnitSprSootv.pas' {FormSprSootv},
+  UnitPerenosNaklMes in '..\DelphiABA\UnitPerenosNaklMes.pas' {FormPerenosNaklMes},
+  UnitFTXPRN10 in '..\DelphiABA\UnitFTXPRN10.pas' {FormFTXPRN10},
+  UnitOstNnt in '..\DelphiABA\UnitOstNnt.pas' {FormOstNnt},
+  UnitAkciz in '..\DelphiABA\UnitAkciz.pas' {FormAkciz},
+  UnitViborSpr in '..\DelphiABA\UnitViborSpr.pas' {FormViborSpr},
+  UnitDanAkt in '..\DelphiABA\UnitDanAkt.pas' {FormDanAkt},
+  UnitDan in '..\DelphiABA\UnitDan.pas' {FormDan},
+  UnitSNorm in '..\DelphiABA\UnitSNorm.pas' {FormSNorm},
+  UnitSearchSNorm in '..\DelphiABA\UnitSearchSNorm.pas' {FormSearchSNorm},
+  UnitOtUbl in '..\DelphiABA\UnitOtUbl.pas' {FormOtUbl},
+  UnitAbout in '..\DelphiABA\UnitAbout.pas' {About},
+  UnitVes in '..\DelphiABA\UnitVes.pas' {FormVes},
+  UnitDelNakl in '..\DelphiABA\UnitDelNakl.pas' {FormDelNakl},
+  UnitVigrNakl in '..\DelphiABA\UnitVigrNakl.pas' {FormVigrNakl};
+
+{$R *.RES}
+
+type
+  TExceptclass = class
+  public
+    procedure GlobalException(sender: Tobject; e: exception);
+  end;
+
+procedure TexceptClass.GlobalException(sender: Tobject; e: exception);
+begin
+ // сообщенние об ошибке
+ if IntToStr(GetLastError)<>'0'
+  then begin
+   Writeln(LogFile,DateTimeToStr(Now)+' - Сбой работы: '+ IntToStr(GetLastError) +' - '+ SysErrorMessage(GetLastError)+' - '+ E.ClassName + ':' + E.Message);Flush (LogFile);
+   ShowMessage(IntToStr(GetLastError)+':'+ SysErrorMessage(GetLastError)+'.  '+ E.ClassName + ':' + E.Message);
+   //Application.Terminate;
+  end
+  else begin
+   Writeln(LogFile,DateTimeToStr(Now)+' - Обработка ошибки: '+ IntToStr(GetLastError) +' - '+ E.ClassName + ':' + E.Message);Flush (LogFile);
+   ShowMessage(E.Message);
+  end;
+end;
+
+begin
+with TExceptClass.Create do
+ begin
+  Application.OnException := GlobalException;
+  Application.Initialize;
+
+  if FirstHinstanceRunning(0) then Exit;
+   GetDir(0,ProgDir);
+  If ProgDir[Length(ProgDir)]<>'\' then ProgDir:=ProgDir+'\';
+
+  // открытие логфайла
+  {$I-} // Отключить контроль файлового ввода-вывода
+  AssignFile(LogFile,ProgDir+'Ksu.log');
+  Append(LogFile);
+  Writeln(LogFile,'');
+  Writeln(LogFile,'\\-----------------------------------------------------');Flush (LogFile);
+  {$I+} // Включить контроль файлового ввода-вывода
+  if IOResult<>0 then Rewrite(LogFile);
+  Writeln(LogFile,DateTimeToStr(Now)+' - Запуск Количественно-суммового учета');Flush (LogFile);
+  LoadSu:=true;
+  Application.CreateForm(TFormMain, FormMain);
+  Application.CreateForm(TFormNastroi, FormNastroi);
+  Application.CreateForm(TAnalPotPForm, AnalPotPForm);
+  Application.CreateForm(TFormSearchFTXAB, FormSearchFTXAB);
+  Application.CreateForm(TFormSpNakl, FormSpNakl);
+  Application.CreateForm(TNewUserForm, NewUserForm);
+  Application.CreateForm(TFormCennik, FormCennik);
+  Application.CreateForm(TFormKnProdaj, FormKnProdaj);
+  Application.CreateForm(TFormSpCennik, FormSpCennik);
+  Application.CreateForm(Ttky, tky);
+  Application.CreateForm(TFormPriceRegistryNom, FormPriceRegistryNom);
+  Application.CreateForm(TAbout, About);
+  Application.CreateForm(TFormVes, FormVes);
+  Application.CreateForm(TFormDelNakl, FormDelNakl);
+  Application.CreateForm(TFormVigrNakl, FormVigrNakl);
+  //Application.CreateForm(TFormTonnaz, FormTonnaz);
+  if Dostp=-1 then
+   begin
+    Writeln(LogFile,DateTimeToStr(Now)+' - Доступ осуществлен от имени пользователя не описаного в системе');
+    Application.Run;
+    CloseFile(LogFile);
+    Exit;
+   end;
+  Writeln(LogFile,DateTimeToStr(Now)+' - Запуск загрузки DataSpr'); Flush(LogFile);
+  Application.Title := 'КСУ';
+  Application.CreateForm(TDataSpr, DataSpr);
+  Writeln(LogFile,DateTimeToStr(Now)+' - Загрузка  DataSpr завершена');Flush (LogFile);
+  Writeln(LogFile,DateTimeToStr(Now)+' - Запуск загрузки Data'); Flush(LogFile);
+  Application.CreateForm(TData, Data);
+  Writeln(LogFile,DateTimeToStr(Now)+' - Загрузка  Data завершена');Flush (LogFile);
+  Application.CreateForm(TFormSearchSBS, FormSearchSBS);
+  Application.CreateForm(TFormSearchOP, FormSearchOP);
+  Application.CreateForm(TFormSearchSB, FormSearchSB);
+  Application.CreateForm(TFormSearchSWTP, FormSearchSWTP);
+  Application.CreateForm(TFormSearchSAS, FormSearchSAS);
+  Application.CreateForm(TFormSearchSEDI, FormSearchSEDI);
+  Application.CreateForm(TFormNastroi, FormNastroi);
+  Application.CreateForm(TFormSearchO, FormSearchO);
+  Application.CreateForm(TFormSearchSNorm, FormSearchSNorm);
+  Application.CreateForm(TFormSearchSTMC, FormSearchSTMC);
+  Application.CreateForm(TFormSearchSTMC1, FormSearchSTMC1);
+  Application.CreateForm(TFormSearchFTXPRN, FormSearchFTXPRN);
+  Application.CreateForm(TFormSearchFTXAP, FormSearchFTXAP);
+  Application.CreateForm(TFormSearchSNKat, FormSearchSNKat);
+  Application.CreateForm(TFormSTMCAdd, FormSTMCAdd);
+  Application.CreateForm(TFormSearchSprGrup, FormSearchSprGrup);
+  Application.CreateForm(TFormSearchSprPGrup, FormSearchSprPGrup);
+  Application.CreateForm(TFormSearchSprVid, FormSearchSprVid);
+  Application.CreateForm(TFormSearchSprRaz1, FormSearchSprRaz1);
+  Application.CreateForm(TFormSearchSprRaz2, FormSearchSprRaz2);
+  Application.CreateForm(TDataSQL, DataSQL);
+  Application.CreateForm(TFormFTXPRNAll, FormFTXPRNAll);
+  Application.CreateForm(TFormSearchSTPMag, FormSearchSTPMag);
+  Application.CreateForm(TUtilForm, UtilForm);
+  Application.CreateForm(TDTForm, DTForm);
+  Application.CreateForm(TFormSTMCEdit, FormSTMCEdit);
+  Application.CreateForm(TFormAxc, FormAxc);
+  Application.CreateForm(TFormDat, FormDat);
+  Application.CreateForm(TzasForm, zasForm);
+  Application.CreateForm(TNewPrice, NewPrice);
+  Application.CreateForm(TFormSTMCKor, FormSTMCKor);
+  Application.CreateForm(TFormPrint, FormPrint);
+  Application.CreateForm(TFormSearchByt, FormSearchByt);
+  Application.CreateForm(Tpr, pr);
+  Application.CreateForm(TFormSearchMOL, FormSearchMOL);
+  Application.CreateForm(TFormSearchSTP, FormSearchSTP);
+  Application.CreateForm(TFormSearchSVT, FormSearchSVT);
+  Application.CreateForm(TFormKachYdo, FormKachYdo);
+  Application.CreateForm(TFormViborKachYdo, FormViborKachYdo);
+  Application.CreateForm(TFormPerenosNakl, FormPerenosNakl);
+  Application.CreateForm(TFormSymNakl, FormSymNakl);
+  Application.CreateForm(TFormReestrNakl, FormReestrNakl);
+  Application.CreateForm(TFormViborNakl, FormViborNakl);
+  Application.CreateForm(TFormYbil, FormYbil);
+  Application.CreateForm(TFormFTXPRNAllDop, FormFTXPRNAllDop);
+  Application.CreateForm(TFormFTXPRNTransp, FormFTXPRNTransp);
+  Application.CreateForm(TFormPerenosNaklMes, FormPerenosNaklMes);
+  Application.CreateForm(TFormAkciz, FormAkciz);
+  Application.CreateForm(TFormViborSpr, FormViborSpr);
+  Application.CreateForm(TFormDanAkt, FormDanAkt);
+  Application.CreateForm(TFormDan, FormDan);
+  LoadSu:=false;
+  Writeln(LogFile,DateTimeToStr(Now)+' - Запуск всех компонентов успешно завершен');Flush (LogFile);
+  Application.Run;
+  Writeln(LogFile,DateTimeToStr(Now)+' - Завершение работы программы');Flush (LogFile);
+  CloseFile(LogFile);
+ end;
+end.
